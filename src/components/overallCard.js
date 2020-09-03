@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+//
+import StateCard from "./stateCard";
 //mui
 import {
   makeStyles,
@@ -36,7 +38,7 @@ const useStyles = makeStyles({
     display: "flex",
     width: "75%",
     minWidth: 250,
-    height: "33vh",
+    height: "30vh",
     marginLeft: "auto",
     marginRight: "auto",
     borderRadius: "10px",
@@ -58,13 +60,17 @@ const useStyles = makeStyles({
   },
   cardTextNumber: {
     fontSize: "calc(20px + 2vmin)",
+    marginLeft: "auto",
+    marginRight: "auto",
+    maxWidth: 150,
     color: "#9e9e9e",
     textAlign: "center",
     lineHeight: "15vh",
+    borderTop: "1px solid",
   },
 });
 
-const DataCard = () => {
+const OverallCard = () => {
   const classes = useStyles();
   const auUrl = "au";
   const allUrl = "all";
@@ -145,8 +151,10 @@ const DataCard = () => {
           ))}
         </Grid>
       </Paper>
+
+      <StateCard />
     </React.Fragment>
   );
 };
 
-export default DataCard;
+export default OverallCard;

@@ -1,1 +1,5 @@
-/* No CSS *//*# sourceMappingURL=App.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans");
+* {
+  font-family: "Josefin Sans", sans-serif !important;
+}
+/*# sourceMappingURL=App.css.map */
