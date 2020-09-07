@@ -63,27 +63,26 @@ const useStyles = makeStyles({
     marginLeft: "auto",
     marginRight: "auto",
     maxWidth: 150,
-    color: "#9e9e9e",
     textAlign: "center",
     lineHeight: "15vh",
-    borderTop: "1px solid",
+    borderTop: "1px solid #9e9e9e",
   },
 });
 
 const OverallCard = () => {
   const classes = useStyles();
-  const auUrl = "au";
-  const allUrl = "all";
-  //   const allUrl = "https://corona.lmao.ninja/v2/all";
-  //   const auUrl = "https://corona.lmao.ninja/v2/countries/AU";
+  // const auUrl = "au";
+  // const allUrl = "all";
+  const allUrl = "https://corona.lmao.ninja/v2/all";
+  const auUrl = "https://corona.lmao.ninja/v2/countries/AU";
   const states = ["NSW", "VIC", "ACT", "QLD", "SA", "TAS", "WA", "NT"];
   const sections = [
-    { name: "Cases", id: "cases" },
     { name: "Today Cases", id: "todayCases" },
-    { name: "Deaths", id: "deaths" },
-    { name: "Today Death", id: "todayDeaths" },
+    { name: "Cases", id: "cases" },
     { name: "Recovered", id: "recovered" },
     { name: "Active", id: "active" },
+    { name: "Deaths", id: "deaths" },
+    { name: "Today Death", id: "todayDeaths" },
   ];
   const [stats, setStats] = useState({});
   const [allCountry, setAllCountry] = useState(false);
@@ -109,6 +108,19 @@ const OverallCard = () => {
   const handleSwitch = (event) => {
     setAllCountry(event.target.checked);
     setUrl((allCountry && auUrl) || allUrl);
+  };
+  const handleColor = (prop) => {
+    if (prop === "Today Cases") {
+      return "#f50057";
+    } else if (prop === "Cases") {
+      return "#2196f3";
+    } else if (prop === "Recovered") {
+      return "#76ff03";
+    } else if (prop === "Active") {
+      return "#ffc400";
+    } else {
+      return "#9e9e9e";
+    }
   };
 
   return (
@@ -140,10 +152,13 @@ const OverallCard = () => {
               <Card className={classes.cardRoot} elevation={3}>
                 <CardContent className={classes.cardContent}>
                   <Typography className={classes.cardTextTitle} variant="h3">
-                    {section.name || "Error"}
+                    {section.name || "..."}
                   </Typography>
-                  <Typography className={classes.cardTextNumber} variant="h3">
-                    {stats[section.id] || "Error"}
+                  <Typography
+                    className={classes.cardTextNumber}
+                    style={{ color: handleColor(section.name) }}
+                  >
+                    {stats[section.id] || "..."}
                   </Typography>
                 </CardContent>
               </Card>
